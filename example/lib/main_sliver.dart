@@ -1,5 +1,5 @@
+import 'package:auto_divider/auto_divider.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 
 void main() => runApp(const MyApp());
 
@@ -58,10 +58,11 @@ class _Body extends StatelessWidget {
       scrollDirection: axis,
       slivers: const <Widget>[
         _SliverBox(color: Colors.green),
-        SliverGap(30, color: Colors.black),
+        SliverAutoDivider(
+            mainAxisExtent: 30, thickness: 0, color: Colors.black),
         _SliverBox(color: Colors.red),
         _SliverBox(color: Colors.yellow),
-        SliverGap(100),
+        SliverAutoDivider(mainAxisExtent: 30),
         _SliverBox(color: Colors.green),
         _SliverBox(color: Colors.red),
         _SliverBox(color: Colors.yellow),
@@ -80,12 +81,10 @@ class _SliverBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: Container(
-        width: 100,
-        height: 100,
-        color: color,
-      ),
+    return SliverGap(
+      100,
+      thickness: 100,
+      color: color,
     );
   }
 }

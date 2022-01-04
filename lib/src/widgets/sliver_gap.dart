@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import 'package:gap/src/rendering/sliver_gap.dart';
+
+import '../rendering/sliver_gap.dart';
 
 /// A sliver that takes a fixed amount of space.
 ///

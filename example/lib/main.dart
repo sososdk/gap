@@ -1,5 +1,5 @@
+import 'package:auto_divider/auto_divider.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 
 void main() => runApp(const MyApp());
 
@@ -36,17 +36,25 @@ class HomePage extends StatelessWidget {
             const Gap.expand(20, thickness: 20, color: Colors.red),
             const Gap(80),
             const Gap.expand(20, thickness: 20, color: Colors.red),
-            const Flexible(child: Gap(2000)),
-            const Gap.expand(20, thickness: 20, color: Colors.red),
-            Row(
-              children: const <Widget>[
-                Gap(20,
-                    thickness: 20, color: Colors.green, crossAxisExtent: 20),
-                Gap(50),
-                Gap(20,
-                    thickness: 20, color: Colors.green, crossAxisExtent: 20),
-              ],
+            const Flexible(
+              child: Gap.expand(double.infinity,
+                  thickness: double.infinity, color: Colors.blue),
             ),
+            const AutoDivider(mainAxisExtent: 30),
+            IntrinsicHeight(
+              child: Row(
+                children: const <Widget>[
+                  Gap(20,
+                      thickness: 20, color: Colors.green, crossAxisExtent: 20),
+                  AutoDivider(mainAxisExtent: 20, color: Colors.green),
+                  Gap(50),
+                  AutoDivider(mainAxisExtent: 20, color: Colors.green),
+                  Gap(20,
+                      thickness: 20, color: Colors.green, crossAxisExtent: 20),
+                ],
+              ),
+            ),
+            const AutoDivider(mainAxisExtent: 30),
             const Gap.expand(200, thickness: 200, color: Colors.blue),
           ],
         ),

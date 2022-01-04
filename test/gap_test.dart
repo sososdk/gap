@@ -1,6 +1,6 @@
+import 'package:auto_divider/auto_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gap/gap.dart';
 
 void main() {
   testWidgets('Gap constructors', (WidgetTester tester) async {

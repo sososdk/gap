@@ -81,7 +81,6 @@ class RenderSliverGap extends RenderSliver {
       hitTestExtent: paintExtent,
       hasVisualOverflow: mainAxisExtent > constraints.remainingPaintExtent ||
           constraints.scrollOffset > 0.0,
-      visible: color != null,
     );
   }
 
@@ -93,17 +92,25 @@ class RenderSliverGap extends RenderSliver {
         ..color = color!;
       final Size size = constraints
           .asBoxConstraints(
-            minExtent: geometry!.paintExtent,
-            maxExtent: geometry!.paintExtent,
+            minExtent: geometry!.scrollExtent,
+            maxExtent: geometry!.scrollExtent,
           )
           .constrain(Size.zero);
-      final Rect temp = offset & size;
+      final axis = axisDirectionToAxis(constraints.axisDirection);
+      final Rect temp = (offset & size).translate(
+        axis == Axis.horizontal ? -constraints.scrollOffset : 0.0,
+        axis == Axis.horizontal ? 0.0 : -constraints.scrollOffset,
+      );
       final Path path = Path();
       if (constraints.axis == Axis.horizontal) {
         final rect = Rect.fromLTRB(
-            temp.center.dx - thickness / 2.0,
+            thickness == double.infinity
+                ? temp.left
+                : temp.center.dx - thickness / 2.0,
             temp.top + indent,
-            temp.center.dx + thickness / 2.0,
+            thickness == double.infinity
+                ? temp.right
+                : temp.center.dx + thickness / 2.0,
             temp.bottom - endIndent);
         if (thickness == 0.0) {
           paint.style = PaintingStyle.stroke;
@@ -116,9 +123,13 @@ class RenderSliverGap extends RenderSliver {
       } else {
         final rect = Rect.fromLTRB(
             temp.left + indent,
-            temp.center.dy - thickness / 2.0,
+            thickness == double.infinity
+                ? temp.top
+                : temp.center.dy - thickness / 2.0,
             temp.right - endIndent,
-            temp.center.dy + thickness / 2.0);
+            thickness == double.infinity
+                ? temp.bottom
+                : temp.center.dy + thickness / 2.0);
         if (thickness == 0.0) {
           paint.style = PaintingStyle.stroke;
           path.moveTo(rect.centerLeft.dx, rect.centerLeft.dy);

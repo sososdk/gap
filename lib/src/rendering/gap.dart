@@ -50,6 +50,8 @@ class RenderGap extends RenderBox {
     while (parentNode != null) {
       if (parentNode is RenderFlex) {
         return parentNode.direction;
+      } else if (parentNode is RenderViewport) {
+        return axisDirectionToAxis(parentNode.axisDirection);
       } else {
         parentNode = parentNode.parent;
       }
@@ -172,9 +174,13 @@ class RenderGap extends RenderBox {
       final Path path = Path();
       if (direction == Axis.horizontal) {
         final rect = Rect.fromLTRB(
-            temp.center.dx - thickness / 2.0,
+            thickness == double.infinity
+                ? temp.left
+                : temp.center.dx - thickness / 2.0,
             temp.top + indent,
-            temp.center.dx + thickness / 2.0,
+            thickness == double.infinity
+                ? temp.right
+                : temp.center.dx + thickness / 2.0,
             temp.bottom - endIndent);
         if (thickness == 0.0) {
           paint.style = PaintingStyle.stroke;
@@ -187,9 +193,13 @@ class RenderGap extends RenderBox {
       } else {
         final rect = Rect.fromLTRB(
             temp.left + indent,
-            temp.center.dy - thickness / 2.0,
+            thickness == double.infinity
+                ? temp.top
+                : temp.center.dy - thickness / 2.0,
             temp.right - endIndent,
-            temp.center.dy + thickness / 2.0);
+            thickness == double.infinity
+                ? temp.bottom
+                : temp.center.dy + thickness / 2.0);
         if (thickness == 0.0) {
           paint.style = PaintingStyle.stroke;
           path.moveTo(rect.centerLeft.dx, rect.centerLeft.dy);

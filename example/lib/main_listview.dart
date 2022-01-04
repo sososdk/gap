@@ -1,5 +1,5 @@
+import 'package:auto_divider/auto_divider.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 
 void main() => runApp(const MyApp());
 
@@ -58,10 +58,10 @@ class _Body extends StatelessWidget {
       scrollDirection: axis,
       children: const <Widget>[
         _Gap(color: Colors.green),
-        Gap(30, color: Colors.black),
+        AutoDivider(mainAxisExtent: 30, color: Colors.black),
         _Gap(color: Colors.red),
         _Gap(color: Colors.yellow),
-        Gap(100),
+        AutoDivider(mainAxisExtent: 30),
         _Gap(color: Colors.green),
         _Gap(color: Colors.red),
         _Gap(color: Colors.yellow),
@@ -80,6 +80,6 @@ class _Gap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Gap(100, color: color);
+    return Gap(100, thickness: 100, color: color);
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import 'package:gap/src/rendering/gap.dart';
+
+import '../rendering/gap.dart';
 
 /// A widget that takes a fixed amount of space in the direction of its
 /// ancestors.
@@ -31,7 +32,7 @@ class Gap extends StatelessWidget {
     this.thickness,
     this.indent,
     this.endIndent,
-  })  : assert(mainAxisExtent >= 0 && mainAxisExtent < double.infinity),
+  })  : assert(mainAxisExtent >= 0),
         assert(crossAxisExtent == null || crossAxisExtent >= 0),
         assert(thickness == null || thickness >= 0.0),
         assert(indent == null || indent >= 0.0),
@@ -106,17 +107,8 @@ class Gap extends StatelessWidget {
   /// If this is null, defaults to 0.0.
   final double? endIndent;
 
-  Axis? _getAxis(BuildContext context) {
-    final AxisDirection? axisDirection = Scrollable.of(context)?.axisDirection;
-    if (axisDirection != null) {
-      return axisDirectionToAxis(axisDirection);
-    }
-    return null;
-  }
-
   @override
   Widget build(BuildContext context) {
-    final Axis? fallbackDirection = this.fallbackDirection ?? _getAxis(context);
     return _RawGap(
       mainAxisExtent,
       crossAxisExtent: crossAxisExtent,
@@ -139,7 +131,7 @@ class _RawGap extends LeafRenderObjectWidget {
     this.thickness,
     this.indent,
     this.endIndent,
-  })  : assert(mainAxisExtent >= 0 && mainAxisExtent < double.infinity),
+  })  : assert(mainAxisExtent >= 0),
         assert(crossAxisExtent == null || crossAxisExtent >= 0),
         assert(thickness == null || thickness >= 0),
         assert(indent == null || indent >= 0),
