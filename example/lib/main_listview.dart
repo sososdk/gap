@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({
-    Key key,
-  }) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +21,14 @@ class MyApp extends StatelessWidget {
 /// A widget.
 class HomePage extends StatelessWidget {
   /// Creates a [HomePage].
-  const HomePage({
-    Key key,
-  }) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
         child: Column(
-          children: const <Widget>[
+          children: <Widget>[
             Expanded(child: _Body(axis: Axis.vertical)),
             Expanded(child: _Body(axis: Axis.horizontal)),
           ],
@@ -46,9 +42,8 @@ class HomePage extends StatelessWidget {
 class _Body extends StatelessWidget {
   /// Creates a [_Body].
   const _Body({
-    Key key,
-    this.axis,
-  }) : super(key: key);
+    required this.axis,
+  });
 
   final Axis axis;
 
@@ -72,9 +67,8 @@ class _Body extends StatelessWidget {
 
 class _Gap extends StatelessWidget {
   const _Gap({
-    Key key,
-    this.color,
-  }) : super(key: key);
+    required this.color,
+  });
 
   final Color color;
 

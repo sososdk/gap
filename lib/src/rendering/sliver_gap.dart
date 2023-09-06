@@ -81,6 +81,7 @@ class RenderSliverGap extends RenderSliver {
       hitTestExtent: paintExtent,
       hasVisualOverflow: mainAxisExtent > constraints.remainingPaintExtent ||
           constraints.scrollOffset > 0.0,
+      visible: true,
     );
   }
 
