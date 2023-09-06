@@ -4,10 +4,10 @@ version: 1.0.0+1
 publish_to: none
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=3.0.2 <4.0.0"
 
 dependencies:
-  cupertino_icons: ^0.1.2
+  cupertino_icons: ^1.0.6
 
   flutter:
     sdk: flutter

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 
 class RenderGap extends RenderBox {
@@ -46,7 +45,7 @@ class RenderGap extends RenderBox {
   }
 
   Axis? get _direction {
-    AbstractNode? parentNode = parent;
+    RenderObject? parentNode = parent;
     while (parentNode != null) {
       if (parentNode is RenderFlex) {
         return parentNode.direction;
